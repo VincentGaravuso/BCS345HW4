@@ -5,12 +5,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.*;
 import java.io.File;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class BCS345hw4 {
+public class BCS345hw4
+{
 
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-        
+    public static void main(String[] args) throws FileNotFoundException, IOException
+    {
         JFileChooser choose = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+        choose.setFileFilter(filter);
         String fileName = null;
         int result = choose.showOpenDialog(choose);
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -35,17 +39,17 @@ public class BCS345hw4 {
                     break;
                 } else {
                     employeeData = lineJustFetched.split("\t+| ");
-                    Employee e = new Employee();
+                    //Employee e = new Employee();
                     int id = (Integer.parseInt(employeeData[0]));
                     String fname = (employeeData[1]);
                     String lname = employeeData[2];
                     int year = Integer.parseInt(employeeData[3]);
                     int month = Integer.parseInt(employeeData[4]);
                     int day = Integer.parseInt(employeeData[5]);
-                    e.setHireDate(
-                            Integer.parseInt(employeeData[3]),
-                            Integer.parseInt(employeeData[4]),
-                            Integer.parseInt(employeeData[5]));
+                    //e.setHireDate(
+                     //       Integer.parseInt(employeeData[3]),
+                       //     Integer.parseInt(employeeData[4]),
+                         //   Integer.parseInt(employeeData[5]));
                     employeeArray[count] = new Employee(fname,
                             lname, id, year, month, day);
                 }
@@ -70,7 +74,8 @@ public class BCS345hw4 {
 
     /*If a date in ISO format is greater than another date in the same form,
     then the first date is the more recent of the two.*/
-    public static void processHireDate(Employee[] e, int numEmp) {
+    public static void processHireDate(Employee[] e, int numEmp)
+    {
         Employee newest = e[0];
         Employee oldest = e[0];
         for (int i = 0; i < numEmp; i++) {
